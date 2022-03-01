@@ -15,8 +15,8 @@ pipeline {
         stage('deploy') {
             steps {
                 sh """
-                cp webapp/target/webapp.war /home/jenkins/tomcat/apache-tomcat-9.0.58/webapps
-                /home/jenkins/tomcat/apache-tomcat-9.0.58/bin/startup.sh
+                sudo docker image build -t f9app:1.0.0 .
+                sudo docker container run -d --name f9app -p 80:8080 f9app:1.0.0
                 """
             }   
         }
